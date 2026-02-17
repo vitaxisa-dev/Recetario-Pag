@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz Morada</title>
+    <style>
+        /* Colores principales */
+        :root {
+            --morado-claro: #9b59b6;
+            --morado-oscuro: #6c3483;
+            --gris-claro: #f2f2f2;
+            --gris-oscuro: #333333;
+            --blanco: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--gris-claro);
+            color: var(--gris-oscuro);
+        }
+
+        header {
+            background-color: var(--morado-oscuro);
+            color: var(--blanco);
+            padding: 20px 40px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: var(--morado-claro);
+            padding: 10px;
+        }
+
+        nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            color: var(--morado-oscuro);
+        }
+
+        footer {
+            background-color: var(--morado-oscuro);
+            color: var(--blanco);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Página Morada</h1>
+    </header>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Servicios</a>
+        <a href="#">Acerca de</a>
+        <a href="#">Contacto</a>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h3>Card 1</h3>
+            <p>Contenido de ejemplo para la tarjeta número 1.</p>
+        </div>
+        <div class="card">
+            <h3>Card 2</h3>
+            <p>Contenido de ejemplo para la tarjeta número 2.</p>
+        </div>
+        <div class="card">
+            <h3>Card 3</h3>
+            <p>Contenido de ejemplo para la tarjeta número 3.</p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Mi Página Morada. Todos los derechos reservados.
+    </footer>
+</body>
+</html>
