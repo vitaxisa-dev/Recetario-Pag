@@ -1,1 +1,813 @@
 # Recetario-Pag
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recetario Gourmet Internacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#f3f0ff,#e6e6f2);
+}
+
+header{
+  background:linear-gradient(90deg,#6a5acd,#836fff);
+  color:white;
+  text-align:center;
+  padding:40px;
+  font-size:2rem;
+}
+
+.tabs{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  background:white;
+  padding:15px;
+}
+
+.tab-btn{
+  background:#dcd6f7;
+  border:none;
+  margin:5px;
+  padding:10px 20px;
+  cursor:pointer;
+  border-radius:20px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.tab-btn:hover,.active{
+  background:#6a5acd;
+  color:white;
+}
+
+.recipes-section{
+  display:none;
+  padding:40px;
+}
+
+.recipes-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:25px;
+}
+
+.recipe-card{
+  background:white;
+  border-radius:15px;
+  padding:25px;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.recipe-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(106,90,205,.3);
+}
+
+.recipe-card h3{
+  color:#6a5acd;
+  margin-top:0;
+}
+
+.details{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .6s ease;
+  margin-top:10px;
+}
+
+.details h4{
+  color:#836fff;
+  margin-bottom:5px;
+}
+
+.details ul, .details ol{
+  padding-left:20px;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:#6a5acd;
+  color:white;
+}
+
+/* CHATBOT */
+.chat-button{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#6a5acd;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:60px;
+  height:60px;
+  font-size:24px;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.chat-box{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:340px;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
+  display:none;
+  flex-direction:column;
+}
+
+.chat-header{
+  background:#6a5acd;
+  color:white;
+  padding:10px;
+  border-radius:15px 15px 0 0;
+  text-align:center;
+}
+
+.chat-messages{
+  padding:10px;
+  height:260px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+.chat-input{
+  display:flex;
+  border-top:1px solid #eee;
+}
+
+.chat-input input{
+  flex:1;
+  border:none;
+  padding:10px;
+}
+
+.chat-input button{
+  background:#6a5acd;
+  color:white;
+  border:none;
+  padding:10px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>Recetario Gourmet Internacional</header>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="showSection(event,'america')">América</button>
+<button class="tab-btn" onclick="showSection(event,'europa')">Europa</button>
+<button class="tab-btn" onclick="showSection(event,'asia')">Asia</button>
+<button class="tab-btn" onclick="showSection(event,'africa')">África</button>
+<button class="tab-btn" onclick="showSection(event,'oceania')">Oceanía</button>
+</div>
+
+<!-- ================= SECCIONES ================= -->
+
+<!-- AMÉRICA -->
+<section id="america" class="recipes-section" style="display:block;">
+<div class="recipes-grid">
+
+<!-- Receta 1 -->
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Ceviche Peruano</h3>
+<p>Fresco y cítrico, típico de Perú.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>500g pescado fresco</li>
+<li>10 limones</li>
+<li>Ají amarillo</li>
+<li>Cebolla morada</li>
+<li>Cilantro fresco</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Cortar pescado en cubos.</li>
+<li>Exprimir los limones y mezclar con ají.</li>
+<li>Marinar el pescado 8 minutos.</li>
+<li>Agregar cebolla y cilantro picados.</li>
+</ol>
+</div>
+</div>
+
+<!-- Receta 2 -->
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Filete Mignon</h3>
+<p>Corte premium con reducción de vino.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Solomillo 200g</li>
+<li>Sal y pimienta</li>
+<li>Mantequilla</li>
+<li>Vino tinto</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Salpimentar y sellar la carne 3 min por lado.</li>
+<li>Reducir el vino para la salsa.</li>
+<li>Reposar carne 5 min antes de cortar.</li>
+</ol>
+</div>
+</div>
+
+<!-- Receta 3 -->
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Tacos Mexicanos</h3>
+<p>Deliciosos y versátiles.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Tortillas de maíz</li>
+<li>Carne de res o pollo</li>
+<li>Cebolla y cilantro</li>
+<li>Salsa al gusto</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Cocinar la carne con especias.</li>
+<li>Calentar las tortillas.</li>
+<li>Armar tacos con carne, cebolla, cilantro y salsa.</li>
+</ol>
+</div>
+</div>
+
+<!-- Receta 4 -->
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Hamburguesa Americana</h3>
+<p>Clásico de la comida rápida premium.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Pan de hamburguesa</li>
+<li>Carne molida</li>
+<li>Lechuga, tomate, queso</li>
+<li>Salsas al gusto</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Formar hamburguesas y cocinarlas a la plancha.</li>
+<li>Armar con pan, lechuga, tomate y queso.</li>
+<li>Agregar salsas al gusto.</li>
+</ol>
+</div>
+</div>
+
+<!-- Receta 5 -->
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Poutine Canadiense</h3>
+<p>Papas fritas con queso y gravy.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Papas fritas</li>
+<li>Queso en grano</li>
+<li>Salsa gravy</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Preparar papas fritas crujientes.</li>
+<li>Colocar queso en grano encima.</li>
+<li>Verter salsa gravy caliente.</li>
+</ol>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= EUROPA ================= -->
+<section id="europa" class="recipes-section">
+<div class="recipes-grid">
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Paella Española</h3>
+<p>Clásico de España con mariscos y pollo.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Arroz</li>
+<li>Mariscos variados</li>
+<li>Pollo</li>
+<li>Azafrán</li>
+<li>Pimientos</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Sofríe pollo y mariscos.</li>
+<li>Añade arroz y azafrán.</li>
+<li>Cocina hasta que el arroz absorba el líquido.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Pizza Italiana</h3>
+<p>Masa crujiente y mozzarella fresca.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Masa de pizza</li>
+<li>Salsa de tomate</li>
+<li>Queso mozzarella</li>
+<li>Albahaca fresca</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Extiende la masa.</li>
+<li>Coloca salsa y queso.</li>
+<li>Hornea hasta dorar y agrega albahaca.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Croissant Francés</h3>
+<p>Mantequilla y hojaldre clásico francés.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Harina</li>
+<li>Mantequilla</li>
+<li>Levadura</li>
+<li>Azúcar</li>
+<li>Sal</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Amasa harina, mantequilla y levadura.</li>
+<li>Realiza pliegues y hornea hasta dorar.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Fish and Chips Británico</h3>
+<p>Pescado rebozado con papas crujientes.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Pescado blanco</li>
+<li>Papas</li>
+<li>Harina</li>
+<li>Cerveza</li>
+<li>Aceite para freír</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Reboza el pescado con harina y cerveza.</li>
+<li>Fríe pescado y papas hasta dorar.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Schnitzel Alemán</h3>
+<p>Filete empanizado dorado y crujiente.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Carne de cerdo</li>
+<li>Harina</li>
+<li>Huevo</li>
+<li>Pan rallado</li>
+<li>Aceite</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Empana la carne con harina, huevo y pan rallado.</li>
+<li>Fríe hasta dorar.</li>
+</ol>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= ASIA ================= -->
+<section id="asia" class="recipes-section">
+<div class="recipes-grid">
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Sushi Japonés</h3>
+<p>Rollos de pescado y arroz al estilo japonés.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Arroz para sushi</li>
+<li>Alga nori</li>
+<li>Pescado fresco</li>
+<li>Vinagre</li>
+<li>Salsa de soja</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Extiende arroz sobre el nori.</li>
+<li>Coloca pescado y enrolla.</li>
+<li>Corta en porciones y sirve.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Pad Thai Tailandés</h3>
+<p>Fideos salteados con camarón y tofu.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Fideos de arroz</li>
+<li>Camarones</li>
+<li>Tofu</li>
+<li>Huevo</li>
+<li>Salsa de tamarindo</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Saltea todos los ingredientes en wok.</li>
+<li>Agrega salsa de tamarindo y mezcla bien.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Curry Indio</h3>
+<p>Exquisito y aromático.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Pollo o verduras</li>
+<li>Curry en polvo</li>
+<li>Leche de coco</li>
+<li>Cebolla y ajo</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Sofríe cebolla y ajo.</li>
+<li>Añade curry y pollo o verduras.</li>
+<li>Agrega leche de coco y cocina.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Bibimbap Coreano</h3>
+<p>Arroz con verduras, carne y huevo.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Arroz</li>
+<li>Verduras variadas</li>
+<li>Carne de res</li>
+<li>Huevo</li>
+<li>Pasta de chile</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Coloca arroz en un bol.</li>
+<li>Añade verduras salteadas, carne y huevo frito.</li>
+<li>Mezcla con pasta de chile antes de comer.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Dumplings Chinos</h3>
+<p>Masa rellena de carne y verduras.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Masa de dumpling</li>
+<li>Carne de cerdo</li>
+<li>Repollo</li>
+<li>Cebolla de verdeo</li>
+<li>Salsa de soja</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Rellena la masa con carne y verduras.</li>
+<li>Cierra y cocina al vapor o fritos.</li>
+</ol>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= ÁFRICA ================= -->
+<section id="africa" class="recipes-section">
+<div class="recipes-grid">
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Cuscús Marroquí</h3>
+<p>Con verduras y cordero aromático.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Cuscús</li>
+<li>Verduras</li>
+<li>Carne de cordero</li>
+<li>Especias</li>
+<li>Aceite de oliva</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Cocina verduras y carne con especias.</li>
+<li>Sirve sobre cuscús cocido.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Jollof Rice Nigeriano</h3>
+<p>Arroz rojo con sabor intenso.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Arroz</li>
+<li>Tomate</li>
+<li>Pimientos</li>
+<li>Cebolla</li>
+<li>Aceite vegetal</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Sofríe tomate y pimientos.</li>
+<li>Añade arroz y agua.</li>
+<li>Cocina hasta que absorba el líquido.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Bobotie Sudafricano</h3>
+<p>Pastel de carne con huevo horneado.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Carne molida</li>
+<li>Pan</li>
+<li>Leche</li>
+<li>Curry</li>
+<li>Huevo</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Mezcla carne con pan y leche.</li>
+<li>Hornea con huevo batido encima.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Injera Etíope</h3>
+<p>Pan esponjoso fermentado típico de Etiopía.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Harina de teff</li>
+<li>Agua</li>
+<li>Sal</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Mezcla harina y agua, fermenta.</li>
+<li>Cocina en sartén como pan delgado.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Tagine Marroquí</h3>
+<p>Guiso lento con carne y frutas.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Carne</li>
+<li>Verduras</li>
+<li>Frutas secas</li>
+<li>Especias</li>
+<li>Aceite</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Cocina lentamente carne, verduras y frutas en un tagine.</li>
+</ol>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= OCEANÍA ================= -->
+<section id="oceania" class="recipes-section">
+<div class="recipes-grid">
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Meat Pie Australiano</h3>
+<p>Pastel de carne horneado.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Masa de hojaldre</li>
+<li>Carne molida</li>
+<li>Cebolla</li>
+<li>Salsa gravy</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Rellena la masa con carne y salsa.</li>
+<li>Hornea hasta dorar.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Pavlova Neozelandesa</h3>
+<p>Merengue crujiente con crema y frutas.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Claras de huevo</li>
+<li>Azúcar</li>
+<li>Crema batida</li>
+<li>Frutas frescas</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Bate claras y azúcar hasta formar merengue.</li>
+<li>Hornea, cubre con crema y frutas.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Lamingtons</h3>
+<p>Bizcochos cubiertos de chocolate y coco.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Bizcocho</li>
+<li>Chocolate</li>
+<li>Coco rallado</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Cubre cubos de bizcocho con chocolate derretido y luego coco rallado.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Barramundi a la Parrilla</h3>
+<p>Pescado típico australiano a la parrilla.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Pescado barramundi</li>
+<li>Limón</li>
+<li>Aceite de oliva</li>
+<li>Hierbas frescas</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Marinar el pescado con limón y hierbas.</li>
+<li>Cocinar a la parrilla hasta dorar.</li>
+</ol>
+</div>
+</div>
+
+<div class="recipe-card" onclick="toggleDetails(this)">
+<h3>Hangi Maorí</h3>
+<p>Cocción tradicional bajo tierra.</p>
+<div class="details">
+<h4>Ingredientes:</h4>
+<ul>
+<li>Carne</li>
+<li>Verduras</li>
+<li>Rocas calientes</li>
+</ul>
+<h4>Preparación:</h4>
+<ol>
+<li>Entierra carne y verduras sobre piedras calientes durante varias horas.</li>
+</ol>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>© 2026 Recetario Gourmet Internacional</footer>
+
+<!-- ================= CHATBOT ================= -->
+
+<button class="chat-button" onclick="toggleChat()">💬</button>
+
+<div class="chat-box" id="chatBox">
+<div class="chat-header">Chef Virtual</div>
+<div class="chat-messages" id="chatMessages"></div>
+<div class="chat-input">
+<input type="text" id="userInput" placeholder="Pregúntame por una receta...">
+<button onclick="sendMessage()">Enviar</button>
+</div>
+</div>
+
+<script>
+/* Mostrar secciones */
+function showSection(event,id){
+  document.querySelectorAll('.recipes-section').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).style.display='block';
+  event.target.classList.add('active');
+}
+
+/* Abrir recetas */
+function toggleDetails(card){
+  let d=card.querySelector('.details');
+  d.style.maxHeight=d.style.maxHeight?null:d.scrollHeight+"px";
+}
+
+/* CHATBOT INTELIGENTE */
+const recipesInfo = {
+  "ceviche": {
+    continent:"América",
+    tip:"Usa pescado extremadamente fresco y no lo marines más de 10 minutos."
+  },
+  "filete": {
+    continent:"América",
+    tip:"Deja reposar la carne antes de cortarla para conservar los jugos."
+  },
+  "tacos": {
+    continent:"América",
+    tip:"Puedes variar la carne o agregar aguacate para más sabor."
+  },
+  "hamburguesa": {
+    continent:"América",
+    tip:"Cocina la carne a tu gusto y agrega queso fresco si deseas."
+  },
+  "poutine": {
+    continent:"América",
+    tip:"Sírvelo inmediatamente para que el queso no se derrita completamente."
+  }
+};
+
+function toggleChat(){
+  let box=document.getElementById("chatBox");
+  box.style.display=box.style.display==="flex"?"none":"flex";
+  box.style.flexDirection="column";
+  if(document.getElementById("chatMessages").innerHTML===""){
+    welcomeMessage();
+  }
+}
+
+function welcomeMessage(){
+  let messages=document.getElementById("chatMessages");
+  messages.innerHTML+="<p><strong>Chef:</strong> 👨‍🍳 ¡Bienvenido al Recetario Gourmet! Pregúntame por cualquier receta y te daré su continente y algunos tips especiales.</p>";
+}
+
+function sendMessage(){
+  let input=document.getElementById("userInput");
+  let messages=document.getElementById("chatMessages");
+  let text=input.value.toLowerCase();
+
+  if(!text.trim()) return;
+
+  messages.innerHTML+=`<p><strong>Tú:</strong> ${text}</p>`;
+
+  let found=false;
+
+  for(let key in recipesInfo){
+    if(text.includes(key)){
+      messages.innerHTML+=`
+<p><strong>Chef:</strong> Excelente elección 👌  
+La receta pertenece al continente <b>${recipesInfo[key].continent}</b>.  
+Tip del chef: ${recipesInfo[key].tip} 🍽️</p>`;
+      found=true;
+    }
+  }
+
+  if(!found){
+    messages.innerHTML+=`
+<p><strong>Chef:</strong> 😊 Puedo ayudarte con información sobre nuestras recetas como Ceviche, Filete, Tacos, Hamburguesa o Poutine. ¡Intenta preguntarme por alguna!</p>`;
+  }
+
+  messages.scrollTop=messages.scrollHeight;
+  input.value="";
+}
+</script>
+
+</body>
+</html>
